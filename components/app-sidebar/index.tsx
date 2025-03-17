@@ -46,7 +46,7 @@ export function AppSidebar({
   // IRL you should use the url/router.
   const [activeItem, setActiveItem] = React.useState(data.navMain[0]);
   const [content, setContent] = React.useState<React.ReactNode>(null);
-  const { setOpen } = useSidebar();
+  const { setOpen, open } = useSidebar();
 
   return (
     <Sidebar
@@ -88,7 +88,8 @@ export function AppSidebar({
                       onClick={() => {
                         setActiveItem(item);
                         setContent(`${item.title} - ${item.url}`);
-                        setOpen(true);
+                        if (activeItem === item && open) setOpen(false);
+                        else setOpen(true);
                       }}
                       isActive={activeItem?.title === item.title}
                       className="px-2.5 md:px-2"
