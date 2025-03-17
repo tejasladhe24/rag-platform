@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  user
+  assistant
+  data
+  system
+}
+
+model User {
+  email    String @id
+  password String
+  chat     Chat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Chat {
+  id       String    @id @default(uuid())
+  messages Message[]
+
+  author String
+  user   User   @relation(fields: [author], references: [email])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id      String @id @default(uuid())
+  content String
+  chatId  String
+  role    Role
+  chat    Chat   @relation(fields: [chatId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Chunk {
+  id        String  @id @default(uuid())
+  filePath  String
+  content   String
+  embedding Float[]
+}

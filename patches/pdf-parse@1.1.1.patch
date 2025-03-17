@@ -1,0 +1,36 @@
+diff --git a/index.js b/index.js
+index e9fc367a00904fca3385a05b2b435fed23d14d77..5bb9c11c1e9691e460b86254293a1c08c7479b29 100644
+--- a/index.js
++++ b/index.js
+@@ -9,18 +9,18 @@ let isDebugMode = !module.parent;
+ 
+ 
+ //for testing purpose
+-if (isDebugMode) {
++// if (isDebugMode) {
+ 
+-    let PDF_FILE = './test/data/05-versions-space.pdf';
+-    let dataBuffer = Fs.readFileSync(PDF_FILE);
+-    Pdf(dataBuffer).then(function(data) {
+-        Fs.writeFileSync(`${PDF_FILE}.txt`, data.text, {
+-            encoding: 'utf8',
+-            flag: 'w'
+-        });
+-        debugger;
+-    }).catch(function(err) {
+-        debugger;
+-    });
++//     let PDF_FILE = './test/data/05-versions-space.pdf';
++//     let dataBuffer = Fs.readFileSync(PDF_FILE);
++//     Pdf(dataBuffer).then(function(data) {
++//         Fs.writeFileSync(`${PDF_FILE}.txt`, data.text, {
++//             encoding: 'utf8',
++//             flag: 'w'
++//         });
++//         debugger;
++//     }).catch(function(err) {
++//         debugger;
++//     });
+ 
+-}
++// }
